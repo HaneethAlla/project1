@@ -1,143 +1,144 @@
 body {
-  background-color: rgb(235, 233, 233);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 100px;
-
-  height: 5000px;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f8f9fa;
+  color: #333;
 }
 
-.header {
+#toggleSidebar {
+  display: none;
+}
+
+.open-btn {
+  font-size: 17px;
+  padding: 10px 15px;
+  display: inline-block;
+  background: #333;
+  color: white;
+  margin: 20px;
+  border-radius: 5px;
+  z-index: 1001;
+}
+.open-btn:hover {
+  background: #555;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+#toggleSidebar:checked ~ .sidebar {
+  left: 0;
+}
+
+.close-btn-label {
   position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.close-btn {
+  font-size: 24px;
+  color: white;
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+  margin-left: 260px;
+}
+
+.main-content h1 {
+  font-size: 28px;
+  display: flex;
+}
+
+.note {
+  background-color: #fff8dc;
+  border-left: 5px solid #ffe58f;
+  padding: 10px;
+  margin: 20px 0;
+  width: 100%;
+  max-width: 1250px;
+}
+
+.upload-section {
+  margin: 30px 0;
+}
+
+.upload-section label {
+  font-size: 18px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.drop-area {
+  border: 2px dashed #ccc;
+  padding: 10px;
+  background-color: #fdfdfd;
+  margin: 10px 0;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 700px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.drop-area input.insert {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
   top: 0;
   left: 0;
-  right: 0;
-  height: 60px;
-  background-color: rgb(63, 184, 106);
-  color: white;
+}
+.drop-area:hover {
+  background-color: #f0f0f0;
+  border-color: #aaa;
+}
+.file-limit {
+  color: #888;
+  font-size: 14px;
+  margin-top: 10px;
+}
 
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 600;
-  font-style: normal;
-  font-size: 50px;
+.model-select select,
+.advanced-options select {
+  padding: 8px;
+  margin-top: 5px;
+  width: 100%;
+  max-width: 700px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #eaeced;
+}
 
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 15px;
+.model-select,
+.advanced-options {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 700px;
 }
 
 .box1 {
-  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: white;
-  height: 350px;
-  width: 700px;
-
-  border-radius: 20px;
-  margin-bottom: 20px;
-
-  font-family: Arial, Helvetica, sans-serif;
-
-  box-shadow: 10px 10px 25px 10px rgba(0, 0, 0, 0.13);
-}
-
-.insert {
-  background-color: white;
-
-  margin-top: 20px;
-  margin-bottom: 15px;
-  height: 250px;
-  width: 650px;
-  border-style: dashed;
-  border-color: rgb(153, 152, 152);
-  border-radius: 10px;
-  font-size: 30px;
-}
-
-.insert:hover {
-  background-color: rgb(248, 247, 247);
-  transition: background-color 0.15s;
-}
-
-.insert:active {
-  background-color: rgb(243, 243, 243);
-  transition: background-color 0.15s;
-}
-
-.summarize-button {
-  margin-top: 5px;
-  width: 650px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background-color: rgb(59, 130, 246);
-  color: white;
-  font-size: 18px;
-  border-radius: 10px;
-  border-style: none;
-  border-width: 1px;
-}
-
-.summarize-button:hover {
-  background-color: rgb(44, 122, 246);
-  transition: background-color 0.2s;
-}
-
-.box2 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  height: 220px;
-  width: 700px;
-  background-color: white;
-  border-radius: 20px;
-  margin-bottom: 20px;
-  font-family: Arial, Helvetica, sans-serif;
-  box-shadow: 10px 10px 25px 10px rgba(0, 0, 0, 0.13);
-}
-
-.ask-a-question {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-
-  margin-top: 20px;
-  margin-bottom: 15px;
-  height: 120px;
-  width: 650px;
-  border-style: dashed;
-  border-color: rgb(153, 152, 152);
-  border-radius: 10px;
-  font-size: 30px;
-}
-
-.ask-button {
-  margin-top: 5px;
-  width: 650px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background-color: rgb(74, 64, 192);
-  color: white;
-  font-size: 18px;
-  border-radius: 10px;
-  border-style: none;
-  border-width: 1px;
-}
-
-.delete-button {
-  position: absolute;
-  top: 28px;
-  right: 30px;
-
-  width: 30px;
-  font-size: 20px;
-}
-
-.delete-button:hover {
-  background-color: rgb(222, 36, 36);
-  transition: background-color 0.15s;
+  gap: 20px;
+  align-items: flex-start;
 }

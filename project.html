@@ -1,40 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <title>PDF Reader</title>
     <link rel="stylesheet" href="project.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
   </head>
-
   <body>
     <div class="header">PDF Reader</div>
 
-    <div class="box1">
-      <button class="delete-button">X</button>
-      <div>
-        <input class="insert" type="file" />
-      </div>
+    <!-- Sidebar toggle checkbox -->
+    <input type="checkbox" id="toggleSidebar" />
 
-      <div>
-        <button class="summarize-button">Summarize</button>
-      </div>
+    <!-- Button to open sidebar -->
+    <label for="toggleSidebar" class="open-btn">☰ Open Sidebar</label>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <label for="toggleSidebar" class="close-btn-label">
+        <span class="close-btn">&times;</span>
+      </label>
+      <p>TEXT</p>
     </div>
 
-    <div class="box2">
-      <div>
-        <input
-          class="ask-a-question"
-          type="text"
-          placeholder="Ask a question"
-        />
-      </div>
+    <!-- Main Content -->
+    <div class="main-content">
+      <h1>PDF Reader</h1>
+      <p class="note">TEXT</p>
 
-      <div>
-        <button class="ask-button">Ask a question</button>
+      <section class="upload-section">
+        <label>Upload a PDF, DOCX, or TXT file</label>
+        <div class="drop-area">
+          Drag and drop file here
+          <input class="insert" type="file" />
+        </div>
+        <p class="file-limit">Limit 25MB per file • PDF, DOCX, TXT</p>
+      </section>
+
+      <div class="box1">
+        <section class="model-select">
+          <label for="model">Model</label>
+          <select id="model">
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </section>
+
+        <section class="advanced-options">
+          <select id="advanced-options">
+            <option value="default">Advanced Option</option>
+          </select>
+        </section>
       </div>
     </div>
   </body>
