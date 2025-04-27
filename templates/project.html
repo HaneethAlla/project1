@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>PDF Reader</title>
-    <link rel="stylesheet" href="project.css" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='project.css') }}"
+    />
   </head>
   <body>
     <div class="header">PDF Reader</div>
@@ -27,15 +30,17 @@
       <h1>PDF Reader</h1>
       <p class="note">TEXT</p>
 
-      <section class="upload-section">
-        <label>Upload a PDF, DOCX, or TXT file</label>
-        <div class="drop-area">
-          Drag and drop file here
-          <input class="insert" type="file" />
-          <button class="remove-btn">X</button>
-        </div>
-        <p class="file-limit">Limit 25MB per file • PDF, DOCX, TXT</p>
-      </section>
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <section class="upload-section">
+          <label>Upload a PDF, DOCX, or TXT file</label>
+          <div class="drop-area">
+            Drag and drop file here
+            <input class="insert" type="file" name="file" required />
+          </div>
+          <p class="file-limit">Limit 25MB per file • PDF, DOCX, TXT</p>
+          <button type="submit" class="open-btn">Upload</button>
+        </section>
+      </form>
 
       <div class="box1">
         <section class="model-select">
@@ -53,6 +58,5 @@
         </section>
       </div>
     </div>
-    
   </body>
 </html>
