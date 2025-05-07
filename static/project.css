@@ -192,24 +192,17 @@ body {
 }
 
 /* Sidebar Input Sections */
-.api-input-section,
+
 .instruction-input-section {
   margin-bottom: 20px;
-  opacity: 0; /* Initially hidden */
-  transform: translateX(-20px); /* Move slightly left */
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-#toggleSidebar:checked ~ .sidebar .api-input-section,
-#toggleSidebar:checked ~ .sidebar .instruction-input-section {
-  opacity: 1; /* Fade in when sidebar is toggled */
+  opacity: 1; /* Ensure visible */
   transform: translateX(0); /* Reset position */
 }
 
 /* Input Fields */
-.api-input-section input,
+
 .instruction-input-section textarea {
-  width: 80%; /* Reduced width from 100% to 80% */
+  width: 100%;
   padding: 10px;
   border: 1px solid #444;
   border-radius: 4px;
@@ -218,8 +211,48 @@ body {
   font-size: 14px;
 }
 
-.api-input-section input:focus,
 .instruction-input-section textarea:focus {
   outline: none;
   border-color: #555;
+}
+
+.instruction-input-section button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.instruction-input-section button:hover {
+  background-color: #555;
+}
+.model-select select,
+.temperature-slider input[type="range"] {
+  width: 100%;
+  max-width: 700px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  background-color: #f8f9fa;
+  color: #212529;
+  font-size: 16px;
+}
+
+.temperature-slider {
+  margin-bottom: 20px;
+}
+
+.temperature-slider label {
+  font-size: 16px;
+  color: #333;
+}
+
+.temperature-slider input[type="range"] {
+  width: 100%;
+  max-width: 700px;
+  margin-top: 10px;
 }

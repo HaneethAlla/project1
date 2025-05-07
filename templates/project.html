@@ -22,34 +22,13 @@
       <label for="toggleSidebar" class="close-btn-label">
         <span class="close-btn">&times;</span>
       </label>
-
-      <!-- API Input Section -->
-      <div class="api-input-section">
-        <label for="api-input">API Input</label>
-        <input
-          type="text"
-          id="api-input"
-          name="api-input"
-          placeholder="Enter API key or URL"
-        />
-      </div>
-
-      <!-- Instruction Input Section -->
-      <div class="instruction-input-section">
-        <label for="instruction-input">Instruction Input</label>
-        <textarea
-          id="instruction-input"
-          name="instruction-input"
-          placeholder="Enter instructions here"
-        ></textarea>
-      </div>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
       <h1>PDF Reader</h1>
-      <p class="note">TEXT</p>
 
+      <!-- Upload Section -->
       <form action="/upload" method="post" enctype="multipart/form-data">
         <section class="upload-section">
           <label>Upload a PDF, DOCX, or TXT file</label>
@@ -62,21 +41,45 @@
         </section>
       </form>
 
-      <div class="box1">
-        <section class="model-select">
-          <label for="model">Model</label>
-          <select id="model">
-            <option value="1">1</option>
-            <option value="2">2</option>
-          </select>
-        </section>
+      <!-- Model Selection Section -->
+      <div class="model-select">
+        <label for="model-dropdown">Select Model</label>
+        <select id="model-dropdown" name="model">
+          <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
+          <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
+        </select>
+      </div>
 
-        <section class="advanced-options">
-          <select id="advanced-options">
-            <option value="default">Advanced Option</option>
-          </select>
-        </section>
+      <!-- Temperature Slider Section -->
+      <div class="temperature-slider">
+        <label for="temperature-bar">Select Temperature</label>
+        <input
+          type="range"
+          id="temperature-bar"
+          name="temperature"
+          min="0.1"
+          max="1.0"
+          step="0.1"
+          value="0.4"
+          oninput="document.getElementById('temperature-value').innerText = this.value"
+        />
+        <span id="temperature-value">0.4</span>
       </div>
     </div>
+
+    <script>
+      const uploadForm = document.querySelector("form[action='/upload']");
+      const temperatureBar = document.getElementById("temperature-bar");
+
+      if (uploadForm && temperatureBar) {
+        uploadForm.addEventListener("submit", function (event) {
+          const temperatureInput = document.createElement("input");
+          temperatureInput.type = "hidden";
+          temperatureInput.name = "temperature";
+          temperatureInput.value = temperatureBar.value;
+          uploadForm.appendChild(temperatureInput);
+        });
+      }
+    </script>
   </body>
 </html>
