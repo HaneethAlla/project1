@@ -8,10 +8,9 @@
       href="{{ url_for('static', filename='project.css') }}"
     />
     <style>
-      /* Ensure text wraps properly */
       pre {
-        white-space: pre-wrap; /* Wrap long lines */
-        word-wrap: break-word; /* Break words if necessary */
+        white-space: pre-wrap; 
+        word-wrap: break-word; 
       }
     </style>
   </head>
@@ -22,7 +21,6 @@
       <div class="note">
         <strong>Response:</strong>
         <div>{{ result|safe }}</div>
-        <!-- Render HTML safely -->
       </div>
       <form action="/" method="get">
         <button type="submit" class="open-btn">Go Back</button>

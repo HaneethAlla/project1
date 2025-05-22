@@ -11,24 +11,26 @@
   <body>
     <div class="header">PDF Reader</div>
 
-    <!-- Sidebar toggle checkbox -->
     <input type="checkbox" id="toggleSidebar" />
 
-    <!-- Button to open sidebar -->
     <label for="toggleSidebar" class="open-btn">☰ Open Sidebar</label>
 
-    <!-- Sidebar -->
     <div class="sidebar">
       <label for="toggleSidebar" class="close-btn-label">
         <span class="close-btn">&times;</span>
       </label>
+      <div class="instruction-input-section">
+        <label for="instruction-box">Enter Custom Prompt (Optional):</label>
+        <textarea
+          id="instruction-box"
+          placeholder="Enter your custom prompt here..."
+        ></textarea>
+      </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
       <h1>PDF Reader</h1>
 
-      <!-- Upload Section -->
       <form action="/upload" method="post" enctype="multipart/form-data">
         <section class="upload-section">
           <label>Upload a PDF, DOCX, or TXT file</label>
@@ -39,40 +41,47 @@
           <p class="file-limit">Limit 25MB per file • PDF, DOCX, TXT</p>
           <button type="submit" class="open-btn">Upload</button>
         </section>
+
+        <div class="model-select">
+          <label for="model-dropdown">Select Model</label>
+          <select id="model-dropdown" name="model">
+            <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
+            <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
+          </select>
+        </div>
+
+        <div class="temperature-slider">
+          <label for="temperature-bar">Select Temperature</label>
+          <input
+            type="range"
+            id="temperature-bar"
+            name="temperature"
+            min="0.1"
+            max="1.0"
+            step="0.1"
+            value="0.4"
+            oninput="document.getElementById('temperature-value').innerText = this.value"
+          />
+          <span id="temperature-value">0.4</span>
+        </div>
       </form>
-
-      <!-- Model Selection Section -->
-      <div class="model-select">
-        <label for="model-dropdown">Select Model</label>
-        <select id="model-dropdown" name="model">
-          <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
-          <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
-        </select>
-      </div>
-
-      <!-- Temperature Slider Section -->
-      <div class="temperature-slider">
-        <label for="temperature-bar">Select Temperature</label>
-        <input
-          type="range"
-          id="temperature-bar"
-          name="temperature"
-          min="0.1"
-          max="1.0"
-          step="0.1"
-          value="0.4"
-          oninput="document.getElementById('temperature-value').innerText = this.value"
-        />
-        <span id="temperature-value">0.4</span>
-      </div>
     </div>
 
     <script>
       const uploadForm = document.querySelector("form[action='/upload']");
+      const instructionBox = document.getElementById("instruction-box");
       const temperatureBar = document.getElementById("temperature-bar");
 
-      if (uploadForm && temperatureBar) {
+      if (uploadForm) {
         uploadForm.addEventListener("submit", function (event) {
+          const promptInput = document.createElement("input");
+          promptInput.type = "hidden";
+          promptInput.name = "prompt";
+          promptInput.value =
+            instructionBox.value ||
+            "You are an AI assistant. Summarize the following document in a clear, concise, and structured format.";
+          uploadForm.appendChild(promptInput);
+
           const temperatureInput = document.createElement("input");
           temperatureInput.type = "hidden";
           temperatureInput.name = "temperature";
